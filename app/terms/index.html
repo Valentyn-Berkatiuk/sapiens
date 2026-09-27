@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms of Use · Sapiens</title>
+<meta name="description" content="What Sapiens promises about its lessons, how a subscription is billed, and what it does not claim to be.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23B02350'/%3E%3Ccircle cx='32' cy='32' r='15' fill='none' stroke='%23FFF4F6' stroke-width='3'/%3E%3Ccircle cx='47' cy='32' r='5' fill='%23FFF4F6'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="https://valentyn-berkatiuk.github.io/sapiens/icon-180.png">
+<link rel="canonical" href="https://valentyn-berkatiuk.github.io/sapiens/app/terms">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Terms of Use · Sapiens">
+<meta property="og:description" content="What Sapiens promises about its lessons, how a subscription is billed, and what it does not claim to be.">
+<meta property="og:url" content="https://valentyn-berkatiuk.github.io/sapiens/app/terms">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://valentyn-berkatiuk.github.io/sapiens/og.en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sapiens · one idea a day, from the source">
+<link rel="alternate" hreflang="de" href="https://valentyn-berkatiuk.github.io/sapiens/app/terms?lang=de">
+<link rel="alternate" hreflang="fr" href="https://valentyn-berkatiuk.github.io/sapiens/app/terms?lang=fr">
+<link rel="alternate" hreflang="es" href="https://valentyn-berkatiuk.github.io/sapiens/app/terms?lang=es">
+<link rel="alternate" hreflang="en" href="https://valentyn-berkatiuk.github.io/sapiens/app/terms">
+<link rel="alternate" hreflang="x-default" href="https://valentyn-berkatiuk.github.io/sapiens/app/terms">
+<style>
+  :root {
+    /* Palette.swift, light column */
+    --paper:#F1ECE6; --surface:#FFFFFF; --surface2:#E8E2DA;
+    --ink:#171419; --ink2:#4C4753; --muted:#5E5967;
+    --hair:#DED5CB;
+    /* A control's boundary has to carry 3:1 (WCAG 1.4.11). --hair is a decorative
+       rule at 1.45:1 and stays that way for card edges and dividers; anything the
+       reader is meant to press or type into takes this instead. */
+    --edge:#8E806E;
+    --brand-ink:#B02350; --brand-wash:176 35 80;
+    --on-brand:#FFF4F6;
+    --danger:#A32B3C; --danger-wash:163 43 60;
+    --ok:#126B49; --ok-wash:18 107 73;
+    --warn:#7A5310; --warn-wash:122 83 16;
+    /* Logic, from SubjectPalette.stops("logic") */
+    --subject:#2A6952; --subject-2:#1A3B30; --subject-lift:#57A183;
+    --shadow:72 52 40;
+
+    /* One spacing scale, every step a multiple of 4. */
+    --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:72px;
+    /* Six type sizes, nothing between them. */
+    --t-fine:13px; --t-body:17px; --t-read:19px; --t-lead:21px; --t-title:27px;
+    /* Metric.Radius from Style.swift */
+    --r-s:12px; --r-m:16px; --r-l:20px; --r-pill:26px;
+    --ease:cubic-bezier(.32,.72,0,1);
+    /* Motion.reveal in Style.swift is a spring at damping .72 — it lands rather
+       than arrives. This is the closest single curve to it. */
+    --ease-land:cubic-bezier(.34,1.28,.64,1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:#111014; --surface:#1A181E; --surface2:#221F28;
+      --ink:#F4F2F6; --ink2:#B9B4C0; --muted:#918C99;
+      --hair:#2C2933;
+      --edge:#726C81;
+      --brand-ink:#FF7B9F; --brand-wash:255 123 159;
+      --danger:#FF8A96; --danger-wash:255 138 150;
+      --ok:#56CF9B; --ok-wash:86 207 155;
+      --warn:#E3A542; --warn-wash:227 165 66;
+      --subject:#57A183; --subject-2:#2A6952; --subject-lift:#57A183;
+      --shadow:0 0 0;
+    }
+  }
+  :root { color-scheme: light dark; }
+
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; background:var(--paper); color:var(--ink);
+    font:400 var(--t-body)/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { max-width:64rem; margin:0 auto; padding:0 var(--s5); padding-block:0 var(--s8); }
+  /* Everything meant to be read keeps the old measure; only the hero uses the width. */
+  .col { max-width:40rem; margin:0 auto; }
+
+  .top { display:flex; justify-content:space-between; align-items:baseline; gap:var(--s4); padding:var(--s5) 0 0; }
+  .mark { font-size:var(--t-body); font-weight:700; letter-spacing:-.02em; margin:0; }
+  .langs { display:flex; gap:var(--s3); font-size:var(--t-fine); }
+  .langs a { color:var(--muted); text-decoration:none; border-radius:var(--s1);
+             transition:color .26s var(--ease); }
+  .langs a:hover { color:var(--ink); }
+  .langs a[aria-current] { color:var(--ink); font-weight:600; }
+
+  h1 { font:700 clamp(2.125rem,7vw,2.875rem)/1.1 -apple-system,BlinkMacSystemFont,sans-serif;
+       letter-spacing:-.025em; margin:0 0 var(--s4); text-wrap:balance; }
+  .sub { font-size:var(--t-lead); line-height:1.45; color:var(--ink2); margin:0; max-width:32rem; }
+
+  /* ── lesson ─────────────────────────────────────────────── */
+  .card { background:var(--surface); border:1px solid var(--hair); border-radius:var(--r-l);
+          overflow:hidden; box-shadow:0 1px 2px rgb(var(--shadow)/.07), 0 12px 28px rgb(var(--shadow)/.09); }
+  /* The cover is how a lesson is identified in the app: subject gradient, no brand. */
+  .cover { background:linear-gradient(135deg,var(--subject-lift),var(--subject) 45%,var(--subject-2));
+           padding:var(--s5) var(--s5) 0; display:flex; justify-content:center; }
+  .cover svg { display:block; width:100%; max-width:19rem; height:auto; }
+  .cover .hit { transform-box:fill-box; transform-origin:center; }
+  .body { padding:var(--s6); }
+  /* The privacy pages used to carry this on every paragraph as a style attribute, which a
+     hash-based style-src does not cover, so sixteen paragraphs of a legal notice rendered
+     in the fallback serif on every locale. */
+  .legal { font-family:-apple-system,sans-serif; font-size:.9375rem; }
+  .kicker { font-size:var(--t-fine); letter-spacing:.12em; text-transform:uppercase;
+            color:var(--subject); font-weight:700; margin:0 0 var(--s2); }
+  h2 { font:700 var(--t-title)/1.2 -apple-system,BlinkMacSystemFont,sans-serif;
+       letter-spacing:-.02em; margin:0 0 var(--s5); text-wrap:balance; }
+  .card p { font:400 var(--t-read)/1.62 "Iowan Old Style","Palatino Linotype",Georgia,serif;
+            margin:0 0 var(--s4); }
+  .takeaway { font-weight:600 !important; padding-left:var(--s4); border-left:2px solid var(--subject); }
+  .card p.recap { color:var(--muted); font-style:italic; }
+  blockquote { margin:0 0 var(--s4); padding:0;
+               font:italic 400 var(--t-read)/1.55 "Iowan Old Style",Georgia,serif; color:var(--ink2); }
+  cite { display:block; margin-top:var(--s2); font:400 var(--t-fine)/1.4 -apple-system,sans-serif;
+         font-style:normal; color:var(--muted); }
+
+  /* ── quiz: answerable, so the page shows the mechanic instead of describing it ── */
+  .quiz { margin-top:var(--s5); padding-top:var(--s5); border-top:1px solid var(--hair); }
+  .quiz .ask { font-family:-apple-system,BlinkMacSystemFont,sans-serif !important;
+               font-size:var(--t-body) !important; font-weight:600; margin-bottom:var(--s3) !important; }
+  .quiz ol { list-style:none; margin:0; padding:0; counter-reset:o; display:flex;
+             flex-direction:column; gap:var(--s2); }
+  .quiz li { counter-increment:o; }
+  .opt { display:flex; gap:var(--s3); align-items:baseline; width:100%; text-align:left;
+         font:inherit; font-size:var(--t-body); color:var(--ink2); cursor:pointer;
+         background:var(--surface); border:1px solid var(--edge); border-radius:var(--r-s);
+         padding:var(--s3) var(--s4);
+         transition:border-color .26s var(--ease), background .26s var(--ease),
+                    transform .26s var(--ease); }
+  .opt::before { content:counter(o,upper-alpha); font-weight:700; color:var(--muted); flex:none; }
+  .opt:hover:not([disabled]) { border-color:var(--subject); }
+  .opt:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; }
+  .opt:active:not([disabled]) { transform:scale(.988); }
+  .opt[disabled] { cursor:default; }
+  .opt[data-state="right"] { border-color:var(--subject); background:var(--surface2);
+                             color:var(--ink); font-weight:500; }
+  .opt[data-state="right"]::before { color:var(--subject); }
+  .opt[data-state="wrong"] { border-color:var(--danger); color:var(--muted); }
+  .opt[data-state="wrong"]::before { color:var(--danger); }
+  .after { font-size:var(--t-fine) !important; line-height:1.5; color:var(--muted);
+           margin:var(--s3) 0 0 !important; font-weight:400 !important;
+           font-family:-apple-system,sans-serif !important; }
+  /* The whole argument of the product: the question returns on a schedule. */
+  .again { margin:var(--s3) 0 0; padding:var(--s3) var(--s4); border-radius:var(--r-s);
+           background:var(--surface2); font-size:var(--t-fine); color:var(--ink2);
+           display:flex; gap:var(--s2); align-items:baseline; }
+  .again b { color:var(--subject); font-weight:600; }
+  .again[hidden] { display:none !important; }
+
+  .sources { margin-top:var(--s5); padding:var(--s4); background:var(--surface2); border-radius:var(--r-m); }
+  .sources .kicker { color:var(--muted); margin-bottom:var(--s2); }
+  .sources ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:var(--s2); }
+  .sources li { font-size:var(--t-fine); color:var(--ink2); line-height:1.45; }
+  .sources a { color:var(--brand-ink); text-underline-offset:2px; }
+  .sources a:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; border-radius:var(--s1); }
+
+  /* ── the price ───────────────────────────────────────────
+     The number sits above the form, so the address that follows is given by
+     someone who has already seen it. Approval is free; this is what is not. */
+  .price { margin:0 0 var(--s5); padding:var(--s5); max-width:27rem;
+           background:var(--surface); border:1px solid var(--hair); border-radius:var(--r-l);
+           box-shadow:0 1px 2px rgb(var(--shadow)/.07), 0 10px 26px rgb(var(--shadow)/.08); }
+  .price-lead { margin:0; font-size:var(--t-fine); color:var(--muted); }
+  .price-amount { margin:var(--s2) 0 var(--s1); display:flex; align-items:baseline;
+                  gap:var(--s2); flex-wrap:wrap; }
+  .price-amount b { font:700 clamp(2rem,6vw,2.5rem)/1 -apple-system,BlinkMacSystemFont,sans-serif;
+                    letter-spacing:-.03em; font-variant-numeric:tabular-nums; }
+  .price-amount span { font-size:var(--t-body); color:var(--muted); }
+  /* The yearly figure against twelve monthly ones is a saving of about 61%, and it is the
+     same in both arms because both arms carry the same price. The only thing
+     that differs between buckets is the magnitude. */
+  .price-monthly { margin:0 0 var(--s3); font-size:var(--t-fine); color:var(--muted); }
+  .price-note { margin:0; font-size:var(--t-fine); line-height:1.5; color:var(--ink2); }
+
+  /* ── the ask, once, after the lesson has been given ─────── */
+  .ask-block { margin-top:var(--s7); }
+  .ask-block h3 { font:600 var(--t-lead)/1.3 -apple-system,sans-serif; margin:0 0 var(--s2);
+                  letter-spacing:-.015em; text-wrap:balance; }
+  .ask-block .why { color:var(--ink2); margin:0 0 var(--s5); max-width:30rem; }
+  .join { display:flex; gap:var(--s2); margin:0 0 var(--s3); max-width:27rem; }
+  .join input {
+    flex:1; min-width:0; font:inherit; color:var(--ink); background:var(--surface);
+    border:1px solid var(--edge); border-radius:var(--r-pill); padding:0 var(--s4); min-height:52px;
+    transition:border-color .26s var(--ease), box-shadow .26s var(--ease);
+  }
+  .join input::placeholder { color:var(--muted); }
+  .join input:focus { outline:none; border-color:var(--brand-ink);
+                      box-shadow:0 0 0 3px rgb(var(--brand-wash)/.16); }
+  .join input[aria-invalid="true"] { border-color:var(--danger); }
+  .cta {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:52px; padding:0 var(--s5);
+    background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F);
+    color:var(--on-brand); border:0; border-radius:var(--r-pill);
+    font:600 var(--t-body)/1 inherit; font-family:inherit; cursor:pointer; white-space:nowrap;
+    box-shadow:0 1px 2px rgb(var(--shadow)/.12), 0 8px 22px rgb(var(--shadow)/.14);
+    transition:transform .26s var(--ease), box-shadow .26s var(--ease), opacity .26s var(--ease);
+  }
+  .cta:hover:not([disabled]) { transform:translateY(-1px);
+    box-shadow:0 2px 5px rgb(var(--shadow)/.14), 0 14px 34px rgb(var(--shadow)/.18); }
+  .cta:active:not([disabled]) { transform:scale(.988); }
+  .cta:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; }
+  /* Loading has to look different from disabled, or "sending" and "unavailable"
+     are the same picture. */
+  .cta[disabled] { opacity:.55; cursor:default; transform:none; box-shadow:none; }
+  .cta[aria-busy="true"]::after { content:""; width:14px; height:14px; margin-left:var(--s2);
+    border:2px solid currentColor; border-top-color:transparent; border-radius:50%;
+    animation:spin .7s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  .consent { display:flex; gap:var(--s2); align-items:flex-start; max-width:27rem;
+             font-size:var(--t-fine); line-height:1.5; color:var(--muted); margin-bottom:var(--s2); }
+  .consent input { margin:3px 0 0; accent-color:var(--brand-ink); flex:none; width:16px; height:16px; }
+  .consent input:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; }
+  .consent a { color:var(--ink2); }
+  .consent a:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; border-radius:var(--s1); }
+  .note { font-size:var(--t-fine); line-height:1.5; color:var(--muted); margin:var(--s3) 0 0; max-width:27rem; }
+  .note:empty { display:none; }
+  .note[data-state="err"] { color:var(--danger); }
+  .note[data-state="ok"] { color:var(--brand-ink); font-weight:600; }
+  .note a { display:block; margin-top:var(--s2); font-weight:400; color:var(--muted); }
+
+  .fine { font-size:var(--t-fine); line-height:1.6; color:var(--muted); margin-top:var(--s7); }
+  .fine a { color:var(--muted); }
+  noscript .nojs { display:block; margin-top:var(--s3); font-size:var(--t-fine); color:var(--danger); }
+
+
+  /* ── hero ───────────────────────────────────────────────── */
+  .hero { position:relative; display:grid; grid-template-columns:minmax(0,1fr) 300px;
+          grid-template-rows:auto auto; gap:var(--s5) var(--s7); align-items:start;
+          padding:var(--s6) 0; }
+  .hero > input { position:absolute; width:1px; height:1px; opacity:0; margin:0; }
+  .hero-copy { grid-column:1; grid-row:1; padding-top:var(--s5); }
+  .hero-steps { grid-column:1; grid-row:2; align-self:end; }
+  .demo { grid-column:2; grid-row:1 / span 2; }
+  .eyebrow { display:inline-flex; align-items:center; gap:var(--s2); margin:0 0 var(--s4);
+             padding:5px var(--s3) 5px var(--s2); border-radius:var(--r-pill);
+             background:rgb(var(--brand-wash)/.12); color:var(--brand-ink);
+             font-size:var(--t-fine); font-weight:600; }
+  .eyebrow::before { content:""; width:7px; height:7px; border-radius:50%; background:currentColor; }
+  .hero-act { display:flex; flex-wrap:wrap; align-items:center; gap:var(--s4); margin-top:var(--s5); }
+  /* The phone beside this carries the app's own Read button, which is the same
+     rose. Size is what separates a page action from a picture of one, so the
+     page's single call is set half again as tall as anything inside the frame. */
+  .hero-act .cta { min-height:56px; padding:0 var(--s6); font-size:18px; }
+  .hero-alt { font-size:var(--t-body); color:var(--ink2); text-underline-offset:3px; }
+  .hero-alt:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; border-radius:var(--s1); }
+  .hero-note { font-size:var(--t-fine); line-height:1.5; color:var(--muted); margin:0; max-width:17rem; }
+  a.cta { text-decoration:none; }
+  .lesson-intro { font-size:var(--t-fine); color:var(--muted); margin:0 0 var(--s3); }
+
+  /* ── the demo ───────────────────────────────────────────────────────────
+     Four screens of the app, switched by radio buttons rather than script, so
+     the whole tour works with JavaScript off. The only thing JS adds inside
+     the phone is holding the quiz answer back until it is tapped. */
+  .demo { justify-self:center; }
+  .stage { display:flex; flex-direction:column; align-items:center; gap:var(--s3); }
+  .phone { width:300px; flex:none; padding:9px; border-radius:46px;
+           background:linear-gradient(155deg,#484350,#141218 45%,#35323C);
+           box-shadow:inset 0 0 0 1px rgb(255 255 255/.09),
+                      0 2px 6px rgb(var(--shadow)/.2), 0 30px 64px rgb(var(--shadow)/.26); }
+  .screen { position:relative; width:282px; height:610px; border-radius:38px; overflow:hidden;
+            background:var(--paper); color:var(--ink);
+            font:400 11.5px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  /* All four screens stay in the tree and cross-fade. display cannot be
+     transitioned, and an instant swap reads as a bug beside the rest of the page.
+     visibility keeps the hidden ones out of the tab order. */
+  .scr { position:absolute; inset:0; display:flex; flex-direction:column;
+         opacity:0; visibility:hidden; }
+  /* The screen is a fixed height, so the body takes the rest of it and the last
+     row of each screen can sit on the bottom edge the way the app puts it there. */
+  .scr-body { flex:1; min-height:0; display:flex; flex-direction:column; }
+  #st1:checked ~ .demo .stage .scr[data-step="1"],
+  #st2:checked ~ .demo .stage .scr[data-step="2"],
+  #st3:checked ~ .demo .stage .scr[data-step="3"],
+  #st4:checked ~ .demo .stage .scr[data-step="4"] { opacity:1; visibility:visible; }
+
+  /* The four steps: what the product does, and the control for the phone beside
+     it. Numbered because the app's flow genuinely is a sequence. */
+  .hero-steps { list-style:none; margin:0; padding:0; max-width:29rem;
+                display:flex; flex-direction:column; gap:2px; }
+  .hero-steps label { display:grid; grid-template-columns:auto 1fr; gap:var(--s4);
+                      align-items:baseline; cursor:pointer;
+                      padding:var(--s3) var(--s3) var(--s3) var(--s4);
+                      border-left:2px solid transparent; border-radius:0 var(--r-s) var(--r-s) 0;
+                      transition:background .26s var(--ease), border-color .26s var(--ease); }
+  .hero-steps label:hover { background:rgb(var(--brand-wash)/.05); }
+  .hero-steps .n { font-size:var(--t-fine); font-weight:700; color:var(--muted);
+                   font-variant-numeric:tabular-nums; transition:color .26s var(--ease); }
+  .hero-steps b { display:block; font-size:var(--t-body); font-weight:600;
+                  letter-spacing:-.01em; color:var(--ink); }
+  .hero-steps .tx > span { display:block; font-size:var(--t-fine); line-height:1.45;
+                           color:var(--muted); margin-top:2px; }
+  #st1:checked ~ .hero-steps li:nth-child(1) label,
+  #st2:checked ~ .hero-steps li:nth-child(2) label,
+  #st3:checked ~ .hero-steps li:nth-child(3) label,
+  #st4:checked ~ .hero-steps li:nth-child(4) label {
+    border-left-color:var(--brand-ink); background:rgb(var(--brand-wash)/.07); }
+  #st1:checked ~ .hero-steps li:nth-child(1) .n,
+  #st2:checked ~ .hero-steps li:nth-child(2) .n,
+  #st3:checked ~ .hero-steps li:nth-child(3) .n,
+  #st4:checked ~ .hero-steps li:nth-child(4) .n { color:var(--brand-ink); }
+  #st1:focus-visible ~ .hero-steps li:nth-child(1) label,
+  #st2:focus-visible ~ .hero-steps li:nth-child(2) label,
+  #st3:focus-visible ~ .hero-steps li:nth-child(3) label,
+  #st4:focus-visible ~ .hero-steps li:nth-child(4) label {
+    outline:2px solid var(--brand-ink); outline-offset:-2px; }
+  .demo-note { width:300px; text-align:center; margin:0; font-size:12px; line-height:1.45;
+               color:var(--muted); }
+
+  /* ── inside the phone: the app's own components ──────────────────────────
+     Sizes are the app's points scaled by 0.72, which is 282pt of screen width
+     against the 393pt the deck is drawn at. Colours are the same tokens as the
+     page, so the phone follows the reader's theme exactly as the app would. */
+  .sbar { display:flex; justify-content:space-between; align-items:center; flex:none;
+          padding:10px 22px 0; font-size:10.5px; font-weight:600; }
+  .sbar.art { position:absolute; inset:0 0 auto; z-index:2; color:#fff; }
+  .sic { display:flex; align-items:flex-end; gap:2px; }
+  .sic i { width:2.5px; border-radius:1px; background:currentColor; }
+  .sic i:nth-child(1) { height:4px; } .sic i:nth-child(2) { height:6px; } .sic i:nth-child(3) { height:8px; }
+  .sic b { width:16px; height:8px; margin-left:4px; border:1px solid currentColor; border-radius:2.5px;
+           position:relative; opacity:.75; }
+  .sic b::after { content:""; position:absolute; inset:1.5px; right:5px; background:currentColor; border-radius:1px; }
+
+  /* SubjectCover: gradient, faint rings off to the right, scattered dots, bottom scrim. */
+  .acover { position:relative; overflow:hidden; --c1:#57A183; --c2:#2A6952; --c3:#1A3B30;
+            background:linear-gradient(135deg,var(--c1),var(--c2) 45%,var(--c3)); }
+  .acover.psy { --c1:#C2568C; --c2:#7A2E5C; --c3:#4A1C3C; }
+  .acover::before { content:""; position:absolute; right:-52%; top:-118%; width:150%; aspect-ratio:1;
+    border-radius:50%; border:1px solid rgb(255 255 255/.1);
+    box-shadow:0 0 0 13px rgb(255 255 255/.055), 0 0 0 29px rgb(255 255 255/.045),
+               0 0 0 47px rgb(255 255 255/.035), 0 0 0 67px rgb(255 255 255/.03); }
+  .acover::after { content:""; position:absolute; inset:0; background:
+    radial-gradient(1.6px 1.6px at 14% 68%, rgb(255 255 255/.55), transparent),
+    radial-gradient(1.3px 1.3px at 31% 24%, rgb(255 255 255/.42), transparent),
+    radial-gradient(2px 2px at 52% 77%, rgb(255 255 255/.36), transparent),
+    radial-gradient(1.4px 1.4px at 68% 41%, rgb(255 255 255/.5), transparent),
+    radial-gradient(1.7px 1.7px at 83% 84%, rgb(255 255 255/.33), transparent),
+    radial-gradient(1.2px 1.2px at 91% 19%, rgb(255 255 255/.45), transparent),
+    linear-gradient(to bottom, transparent 42%, rgb(8 4 12/.34) 74%, rgb(8 4 12/.74)); }
+  .acover > * { position:relative; z-index:1; }
+
+  .apill { display:inline-block; font-size:9px; font-weight:600; letter-spacing:.01em;
+           padding:4px 9px; border-radius:20px; background:rgb(255 255 255/.94); color:#1C161F; }
+  .apill.dim { background:rgb(255 255 255/.15); color:#fff; border:1px solid rgb(255 255 255/.2); }
+  .echip { display:inline-flex; align-items:center; justify-content:center; flex:none;
+           width:18px; height:18px; border-radius:6px; font-size:9.5px;
+           background:rgb(var(--warn-wash)/.14); border:1px solid var(--hair); }
+  .echip.lg { width:26px; height:26px; border-radius:9px; font-size:13px;
+              background:rgb(var(--brand-wash)/.12); }
+  .acard { background:var(--surface); border:1px solid var(--hair); border-radius:14px; overflow:hidden;
+           box-shadow:0 1px 2px rgb(var(--shadow)/.08), 0 8px 20px rgb(var(--shadow)/.1); }
+  .abtn, .aghost { display:flex; align-items:center; justify-content:center; gap:7px; width:100%;
+                   min-height:38px; border-radius:12px; cursor:pointer; font-family:inherit; }
+  .abtn { border:0; background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F);
+          color:var(--on-brand); font:600 12px/1 inherit;
+          box-shadow:0 1px 2px rgb(120 20 50/.2), 0 6px 14px rgb(120 20 50/.24);
+          transition:transform .26s var(--ease); }
+  .abtn:active { transform:scale(.988); }
+  .disc { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px;
+          border-radius:50%; background:rgb(255 255 255/.2); font-size:10px; }
+  .aghost { min-height:33px; border:1px solid var(--hair); background:var(--surface);
+            color:var(--ink); font:600 11.5px/1 inherit; }
+
+  /* Screen 1 — Today */
+  .today { padding:4px 16px 14px; gap:10px; }
+  .thead { display:flex; justify-content:space-between; align-items:flex-start; }
+  .thi { font-size:18px; font-weight:700; letter-spacing:-.02em; margin:0; }
+  .tdate { font-size:9.5px; font-weight:500; color:var(--muted); margin:1px 0 0; }
+  .streak { display:flex; align-items:center; gap:5px; padding:5px 9px; border-radius:20px;
+            background:var(--surface2); border:1px solid var(--hair);
+            font-size:11.5px; font-weight:600; }
+  .lcover { height:85px; display:flex; align-items:flex-start; justify-content:space-between; padding:10px; }
+  .lbody { padding:11px; }
+  .ltitle { font-size:14px; font-weight:600; letter-spacing:-.012em; line-height:1.25; margin:0; }
+  .lmeta { font-size:9.5px; font-weight:500; color:var(--muted); margin:5px 0 0; }
+  .lbody .abtn { margin-top:9px; }
+  .tsec { display:flex; flex-direction:column; gap:7px; }
+  .tsec-h { display:flex; justify-content:space-between; align-items:baseline; }
+  .tsec-h b { font-size:14.5px; font-weight:600; letter-spacing:-.015em; }
+  .due { font-size:9.5px; font-weight:700; color:var(--brand-ink); }
+  .tiles { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  .tile { background:var(--surface); border:1px solid var(--hair); border-radius:10px; overflow:hidden;
+          box-shadow:0 1px 2px rgb(var(--shadow)/.08); }
+  .tile .acover { height:55px; }
+  .tile-b { padding:8px 9px 9px; }
+  .tile-t { font-size:10px; font-weight:700; line-height:1.25; margin:0; }
+  .tile-s { font-size:8.5px; color:var(--muted); margin:2px 0 0; }
+  /* Today is a ScrollView in the app, so this row follows the recall section
+     rather than being pinned to the bottom edge. */
+  .twk { display:flex; align-items:center; gap:9px; padding-top:10px;
+         border-top:1px solid var(--hair); }
+  .twk-t { font-size:10.5px; font-weight:700; margin:0; }
+  .twk-s { font-size:9px; color:var(--muted); margin:1px 0 0; }
+  .chev { margin-left:auto; color:var(--muted); font-size:13px; }
+
+  /* Screen 2 — the reader */
+  .rhero { position:relative; flex:none; height:178px; display:flex; flex-direction:column;
+           justify-content:flex-end; padding:14px 16px; }
+  .rclose { position:absolute; top:34px; left:16px; z-index:2; width:24px; height:24px; border-radius:50%;
+            background:rgb(255 255 255/.94); color:#1C161F; display:flex; align-items:center;
+            justify-content:center; font-size:11px; font-weight:600; }
+  .rhero .apill { align-self:flex-start; }
+  .rtitle { font-size:19px; font-weight:700; letter-spacing:-.022em; line-height:1.15; color:#fff;
+            margin:8px 0 0; position:relative; z-index:1; }
+  .rbody { flex:1; display:flex; flex-direction:column; gap:10px; padding:12px 16px 14px; }
+  .prog { display:flex; align-items:center; gap:9px; }
+  .prog span { display:flex; gap:5px; flex:1; }
+  .prog i { flex:1; height:4px; border-radius:2px; background:var(--hair); }
+  .prog i.on { background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F); }
+  .prog em { font-style:normal; font-size:8px; font-weight:600; letter-spacing:.07em; color:var(--muted); }
+  .rtext { margin:0; font:400 13px/1.58 "Iowan Old Style","Palatino Linotype",Georgia,serif;
+           color:var(--ink2); }
+  .atake { position:relative; overflow:hidden; padding:11px 12px 11px 14px; border-radius:9px;
+           background:var(--surface2); }
+  .atake::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--brand-ink); }
+  .akick { font-size:8px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+           color:var(--brand-ink); margin:0 0 4px; }
+  .atake p { margin:0; font-size:11.5px; font-weight:600; line-height:1.38; }
+  .asrc { display:flex; align-items:center; gap:9px; padding:9px 11px; border-radius:10px;
+          background:var(--surface); border:1px solid var(--hair); }
+  .asrc-t { font-size:9.5px; font-weight:600; line-height:1.3; margin:0; }
+  .asrc-s { font-size:8.5px; color:var(--muted); margin:1px 0 0; }
+  .rbody .abtn { margin-top:auto; }
+
+  /* Screen 3 — the question */
+  .aq { padding:8px 16px 14px; display:flex; flex-direction:column; gap:9px; }
+  .aq-cover { height:62px; display:flex; align-items:flex-end; padding:9px; }
+  .aq-q { margin:0; padding:11px; font:600 15px/1.28 "Iowan Old Style","Palatino Linotype",Georgia,serif; }
+  .aq ol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .aopt { display:flex; align-items:center; gap:9px; width:100%; text-align:left; cursor:pointer;
+          background:var(--surface); border:1px solid var(--edge); border-radius:12px; padding:9px 11px;
+          font:500 11px/1.32 inherit; font-family:inherit; color:var(--ink);
+          box-shadow:0 1px 2px rgb(var(--shadow)/.06);
+          transition:border-color .26s var(--ease), background .26s var(--ease),
+                     transform .26s var(--ease); }
+  .aopt .mk { flex:none; width:21px; height:21px; border-radius:7px; display:flex;
+              align-items:center; justify-content:center; font-size:9px; font-weight:600;
+              background:var(--surface2); color:var(--muted); }
+  .aopt:hover:not([disabled]) { border-color:var(--brand-ink); }
+  .aopt:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; }
+  .aopt:active:not([disabled]) { transform:scale(.988); }
+  .aopt[disabled] { cursor:default; }
+  .aopt[data-state="right"] { border-color:var(--ok); background:rgb(var(--ok-wash)/.13); }
+  .aopt[data-state="right"] .mk { background:var(--ok); color:#fff; }
+  .aopt[data-state="wrong"] { border-color:var(--danger); background:rgb(var(--danger-wash)/.13); }
+  .aopt[data-state="wrong"] .mk { background:var(--danger); color:#fff; }
+  .aopt[data-state="muted"] { opacity:.58; }
+  .aexp { padding:11px; border-radius:10px; background:rgb(var(--ok-wash)/.11);
+          border:1px solid rgb(var(--ok-wash)/.26); }
+  .aexp[data-verdict="wrong"] { background:rgb(var(--warn-wash)/.11); border-color:rgb(var(--warn-wash)/.26); }
+  .averd { display:flex; align-items:center; gap:7px; font-size:11.5px; font-weight:700; color:var(--ok); }
+  .aexp[data-verdict="wrong"] .averd { color:var(--warn); }
+  .abadge { margin-left:auto; font-size:8.5px; font-weight:600; color:var(--ok);
+            background:rgb(var(--ok-wash)/.14); padding:3px 8px; border-radius:20px; }
+  .aexp[data-verdict="wrong"] .abadge { display:none; }
+  .aexp p { margin:7px 0 0; font-size:10px; line-height:1.48; color:var(--ink2); }
+  .acite { display:flex; gap:5px; margin-top:8px; }
+  .acite span { font-size:8.5px; font-weight:600; padding:3px 8px; border-radius:20px;
+                background:var(--surface); border:1px solid var(--hair); color:var(--ink2); }
+  .aq .abtn { margin-top:auto; }
+
+  /* Screen 4 — done for today */
+  .done { padding:12px 16px 16px; display:flex; flex-direction:column; align-items:center; gap:11px; }
+  .done .thead { width:100%; }
+  .ringwrap { position:relative; width:138px; height:138px; margin-top:4px; }
+  .ringwrap svg { width:100%; height:100%; display:block; }
+  .ring-trk { fill:none; stroke:var(--hair); stroke-width:11; }
+  .ring-arc { fill:none; stroke:url(#rg); stroke-width:11; stroke-linecap:round;
+              stroke-dasharray:314; stroke-dashoffset:0; transform:rotate(-90deg); transform-origin:50% 50%; }
+  .ring-in { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
+             justify-content:center; gap:3px; }
+  .ring-in .tick { font-size:30px; line-height:1; font-weight:500; }
+  .ring-in .sum { font-size:8px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
+                  color:var(--muted); max-width:74px; text-align:center; line-height:1.35; }
+  .done-line { margin:0; text-align:center; font-size:11.5px; line-height:1.45; color:var(--ink2);
+               padding:0 8px; }
+  .free { width:100%; display:flex; align-items:center; gap:9px; padding:9px 10px; border-radius:10px;
+          background:var(--surface); border:1px solid var(--hair); }
+  .done-fine { margin:auto 0 0; text-align:center; font-size:9.5px; color:var(--muted); }
+
+
+  @keyframes close { from { stroke-dashoffset:314; } to { stroke-dashoffset:0; } }
+  @keyframes reveal { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  @keyframes hit {
+    0%   { opacity:0; transform:scale(.15); animation-timing-function:cubic-bezier(.34,1.28,.64,1); }
+    5%   { opacity:1; transform:scale(1); }
+    48%  { opacity:1; transform:scale(1); }
+    52%  { opacity:0; transform:scale(.15); }
+    82%  { opacity:0; transform:scale(.15); animation-timing-function:cubic-bezier(.34,1.28,.64,1); }
+    87%  { opacity:1; transform:scale(1); }
+    100% { opacity:1; transform:scale(1); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* The app lifts each block 12pt behind the one above it, 55ms apart
+       (Style.swift, .arrive(step:when:)). The hero arrives the same way. */
+    .hero-copy, .hero-steps, .demo, .card { animation:rise .8s var(--ease) both; }
+    .hero-steps { animation-delay:.055s; }
+    .demo       { animation-delay:.11s; }
+    .card       { animation-delay:.165s; }
+
+    /* Everything below the fold used to finish arriving while it was still off
+       screen, so scrolling revealed blocks that had already animated to nobody.
+       Where the browser supports a view timeline, a block's rise is driven by its
+       own arrival in the viewport instead of by the clock. Both blocks below the
+       fold are covered — the phone mock as well as the lesson card. The first
+       version of this covered only the card, while describing the mock.
+
+       No JavaScript, and nothing can be left invisible: a card already on screen
+       at load is past its entry range, which puts the animation at its end state.
+       The delay property becomes a timeline offset once a timeline is attached,
+       so the load-order stagger above has to be cleared here. */
+    @supports (animation-timeline: view()) {
+      .demo, .card {
+        animation-timeline:view();
+        /* A cover range, not an entry range: the lesson card is taller than a phone
+           screen, and entry is driven by the element's top edge — so the first paragraph read
+           at about half opacity and did not reach full until most of a screen of
+           scrolling. A cover range finishes while the subject is still arriving. */
+        animation-range:cover 0% cover 22%;
+        animation-delay:0s;
+      }
+    }
+
+    /* Screen to screen: out in 200ms, in after a 100ms beat, so the two never
+       sit at half opacity together. 0.5s on the house curve is Motion.spring,
+       which is what the app uses card to card. */
+    .scr { transform:translateY(12px);
+           transition:opacity .2s var(--ease), transform .2s var(--ease), visibility 0s .2s; }
+    #st1:checked ~ .demo .stage .scr[data-step="1"],
+    #st2:checked ~ .demo .stage .scr[data-step="2"],
+    #st3:checked ~ .demo .stage .scr[data-step="3"],
+    #st4:checked ~ .demo .stage .scr[data-step="4"] {
+      transform:none;
+      transition:opacity .42s var(--ease) .1s, transform .5s var(--ease) .1s, visibility 0s; }
+
+    /* The verdict is the moment the product is judged on, so it lands rather
+       than appears — the same call the app makes with Motion.reveal. */
+    .again, .aexp { animation:reveal .38s var(--ease-land) both; }
+    /* Two rounds of hits inside one 7s pass, then it stops on the full diagram.
+       The gap between rounds is longer than the stagger, so there is a moment
+       when the bomber is genuinely clean again before it starts taking fire —
+       and nothing ever lands on the engines or the cockpit, which is the lesson.
+       The backwards fill holds the empty first frame through the delay; after it
+       the circles fall back to their own styles, which are simply visible. */
+    .cover .hit { animation:hit 7s cubic-bezier(.32,.72,0,1) backwards;
+                  animation-delay:var(--d,0s); }
+    #st4:checked ~ .demo .stage .ring-arc { animation:close .8s var(--ease) both; }
+    #st4:checked ~ .demo .stage .ring-in { animation:reveal .5s var(--ease) .22s both; }
+
+    html { scroll-behavior:smooth; }
+  }
+  @keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce) { .cta[aria-busy="true"]::after { animation:none; } }
+
+  @media (max-width:54rem) {
+    .hero { grid-template-columns:minmax(0,1fr); grid-template-rows:auto; gap:var(--s6); }
+    .hero-copy, .hero-steps, .demo { grid-column:1; grid-row:auto; }
+    .hero-copy { order:1; padding-top:0; }
+    .demo { order:2; justify-self:center; }
+    .hero-steps { order:3; align-self:auto; }
+  }
+  /* Below 336px the phone no longer fits the gutter, so the whole rig scales. */
+  @media (max-width:21rem) {
+    .stage { transform:scale(.84); transform-origin:top center; margin-bottom:-120px; }
+  }
+
+  @media (max-width:30rem) {
+    .wrap { padding:0 var(--s4); padding-block:0 var(--s7); }
+    .body { padding:var(--s5) var(--s4); }
+    .cover { padding:var(--s4) var(--s4) 0; }
+    .join { flex-direction:column; }
+    .join .cta { width:100%; }
+  }
+
+  .cover .hit.d0{--d:0.450s}
+  .cover .hit.d1{--d:0.510s}
+  .cover .hit.d2{--d:0.570s}
+  .cover .hit.d3{--d:0.630s}
+  .cover .hit.d4{--d:0.690s}
+  .cover .hit.d5{--d:0.750s}
+  .cover .hit.d6{--d:0.810s}
+  .cover .hit.d7{--d:0.870s}
+  .cover .hit.d8{--d:0.930s}
+  .cover .hit.d9{--d:0.990s}
+  .cover .hit.d10{--d:1.050s}
+  .cover .hit.d11{--d:1.110s}
+  .cover .hit.d12{--d:1.170s}
+  .cover .hit.d13{--d:1.230s}
+  .cover .hit.d14{--d:1.290s}
+  .cover .hit.d15{--d:1.350s}
+  .cover .hit.d16{--d:1.410s}
+  .cover .hit.d17{--d:1.470s}
+  .cover .hit.d18{--d:1.530s}
+  .cover .hit.d19{--d:1.590s}
+  .cover .hit.d20{--d:1.650s}
+  .cover .hit.d21{--d:1.710s}
+  .cover .hit.d22{--d:1.770s}
+  .cover .hit.d23{--d:1.830s}
+  .cover .hit.d24{--d:1.890s}
+  .cover .hit.d25{--d:1.950s}
+  .cover .hit.d26{--d:2.010s}
+  .cover .hit.d27{--d:2.070s}
+  .cover .hit.d28{--d:2.130s}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <p class="mark">Sapiens</p>
+  </div>
+  <header>
+    <h1>Terms of Use</h1>
+    <p class="sub">What Sapiens promises about its lessons, how a subscription is billed, and what it does not claim to be.</p>
+  </header>
+  <article class="card">
+    <div class="body">
+    <p class="legal">Effective 22 September 2026. This is the same text the app shows under Settings › Legal, generated from it.</p>
+    <p class="kicker">Agreeing to these terms</p>
+    <p class="legal">Using Sapiens means accepting what follows. If you do not accept it, delete the app; nothing of yours is held anywhere else.</p>
+    <p class="kicker">Your licence</p>
+    <p class="legal">Sapiens is licensed, not sold, to you under Apple's Licensed Application End User Licence Agreement — the standard EULA, linked at the end of this document. It grants a personal, non-transferable licence to use the app on devices you own or control.</p>
+    <p class="kicker">Subscriptions and billing</p>
+    <p class="legal">Some categories are part of a paid plan. Where a plan renews, it is an auto-renewing subscription: payment is charged to your Apple Account at confirmation of purchase, and it renews for the same period unless you cancel at least 24 hours before the current period ends.</p>
+    <p class="legal">A renewal is charged within 24 hours of the end of the current period, at the price shown for your region.</p>
+    <p class="legal">Manage or cancel a subscription in the App Store: your Apple Account › Subscriptions. The app cannot cancel it for you, and no one else can cancel it on your behalf.</p>
+    <p class="legal">A one-off lifetime purchase does not renew and is not charged again.</p>
+    <p class="legal">Refunds are handled by Apple under its own terms, not by us.</p>
+    <p class="kicker">What the lessons are</p>
+    <p class="legal">Every factual claim in a lesson carries a citation to published work, and the citation is shown to you rather than kept behind the scenes. That is the promise: you can check any sentence against the source it came from.</p>
+    <p class="legal">The lessons are general education. They are not medical, legal, financial or professional advice, and nothing in them should be acted on as a substitute for a qualified opinion.</p>
+    <p class="legal">Where a source is contested, the lesson says so. Where we get something wrong, we correct it and the corrected lesson replaces the old one.</p>
+    <p class="kicker">What is not promised</p>
+    <p class="legal">The app is provided as it is. We do not warrant that it will be uninterrupted, that every lesson is free of error, or that it fits a particular purpose of yours.</p>
+    <p class="legal">Nothing here limits liability for anything that cannot lawfully be limited.</p>
+    <p class="kicker">Using the app fairly</p>
+    <p class="legal">The lessons, their wording and the ordering of the corpus are ours. Reading them, quoting them and citing them is fine. Bulk-extracting the corpus, republishing it, or using it to train or populate another product is not.</p>
+    <p class="legal">The works the lessons cite belong to their own authors and publishers. Sapiens links to them; it does not reproduce them.</p>
+    <p class="legal">Your data is yours. We claim nothing in what you read, answer or export.</p>
+    <p class="kicker">Ending it</p>
+    <p class="legal">You can stop at any time by deleting the app, and erase what it holds first from Settings › Data.</p>
+    <p class="legal">We may end access where the app is being used to breach these terms.</p>
+    <p class="kicker">Your consumer rights</p>
+    <p class="legal">Where the law of the country you live in gives you rights as a consumer, nothing in these terms reduces them. If a clause here conflicts with one of those rights, that right wins.</p>
+    <p class="kicker">Changes</p>
+    <p class="legal">If these terms change, the effective date at the top changes with them, and a material change is shown in the app.</p>
+    <p class="kicker">Contact</p>
+    <p class="legal">Write to sapiens.support@gmail.com.</p>
+    <p class="kicker">Apple's licence</p>
+    <p class="legal"><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed Application End User Licence Agreement</a></p>
+    </div>
+  </article>
+  <p class="fine"><a href="https://valentyn-berkatiuk.github.io/sapiens/support">Support</a> · <a href="https://valentyn-berkatiuk.github.io/sapiens/app/privacy">Privacy Policy</a></p>
+</div>
+
+</body>
+</html>
