@@ -171,6 +171,32 @@
   .sources a { color:var(--brand-ink); text-underline-offset:2px; }
   .sources a:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; border-radius:var(--s1); }
 
+  /* The page's action. Here rather than beside the form it serves, because the shared
+     puzzle pages carry this base and nothing below it. */
+  .cta {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:52px; padding:0 var(--s5);
+    background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F);
+    color:var(--on-brand); border:0; border-radius:var(--r-pill);
+    font:600 var(--t-body)/1 inherit; font-family:inherit; cursor:pointer; white-space:nowrap;
+    box-shadow:0 1px 2px rgb(var(--shadow)/.12), 0 8px 22px rgb(var(--shadow)/.14);
+    transition:transform .26s var(--ease), box-shadow .26s var(--ease), opacity .26s var(--ease);
+  }
+  .cta:hover:not([disabled]) { transform:translateY(-1px);
+    box-shadow:0 2px 5px rgb(var(--shadow)/.14), 0 14px 34px rgb(var(--shadow)/.18); }
+  .cta:active:not([disabled]) { transform:scale(.988); }
+  .cta:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; }
+  /* Loading has to look different from disabled, or "sending" and "unavailable"
+     are the same picture. */
+  .cta[disabled] { opacity:.55; cursor:default; transform:none; box-shadow:none; }
+  .cta[aria-busy="true"]::after { content:""; width:14px; height:14px; margin-left:var(--s2);
+    border:2px solid currentColor; border-top-color:transparent; border-radius:50%;
+    animation:spin .7s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .fine { font-size:var(--t-fine); line-height:1.6; color:var(--muted); margin-top:var(--s7); }
+  .fine a { color:var(--muted); }
+
+
   /* ── the plans ───────────────────────────────────────────
      The numbers sit above the form, so the address that follows is given by
      someone who has already seen them. Approval is free; this is what is not.
@@ -227,26 +253,6 @@
   .join input:focus { outline:none; border-color:var(--brand-ink);
                       box-shadow:0 0 0 3px rgb(var(--brand-wash)/.16); }
   .join input[aria-invalid="true"] { border-color:var(--danger); }
-  .cta {
-    display:inline-flex; align-items:center; justify-content:center;
-    min-height:52px; padding:0 var(--s5);
-    background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F);
-    color:var(--on-brand); border:0; border-radius:var(--r-pill);
-    font:600 var(--t-body)/1 inherit; font-family:inherit; cursor:pointer; white-space:nowrap;
-    box-shadow:0 1px 2px rgb(var(--shadow)/.12), 0 8px 22px rgb(var(--shadow)/.14);
-    transition:transform .26s var(--ease), box-shadow .26s var(--ease), opacity .26s var(--ease);
-  }
-  .cta:hover:not([disabled]) { transform:translateY(-1px);
-    box-shadow:0 2px 5px rgb(var(--shadow)/.14), 0 14px 34px rgb(var(--shadow)/.18); }
-  .cta:active:not([disabled]) { transform:scale(.988); }
-  .cta:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; }
-  /* Loading has to look different from disabled, or "sending" and "unavailable"
-     are the same picture. */
-  .cta[disabled] { opacity:.55; cursor:default; transform:none; box-shadow:none; }
-  .cta[aria-busy="true"]::after { content:""; width:14px; height:14px; margin-left:var(--s2);
-    border:2px solid currentColor; border-top-color:transparent; border-radius:50%;
-    animation:spin .7s linear infinite; }
-  @keyframes spin { to { transform:rotate(360deg); } }
 
   .consent { display:flex; gap:var(--s2); align-items:flex-start; max-width:27rem;
              font-size:var(--t-fine); line-height:1.5; color:var(--muted); margin-bottom:var(--s2); }
@@ -260,8 +266,6 @@
   .note[data-state="ok"] { color:var(--brand-ink); font-weight:600; }
   .note a { display:block; margin-top:var(--s2); font-weight:400; color:var(--muted); }
 
-  .fine { font-size:var(--t-fine); line-height:1.6; color:var(--muted); margin-top:var(--s7); }
-  .fine a { color:var(--muted); }
   noscript .nojs { display:block; margin-top:var(--s3); font-size:var(--t-fine); color:var(--danger); }
 
 

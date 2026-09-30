@@ -171,6 +171,32 @@
   .sources a { color:var(--brand-ink); text-underline-offset:2px; }
   .sources a:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; border-radius:var(--s1); }
 
+  /* The page's action. Here rather than beside the form it serves, because the shared
+     puzzle pages carry this base and nothing below it. */
+  .cta {
+    display:inline-flex; align-items:center; justify-content:center;
+    min-height:52px; padding:0 var(--s5);
+    background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F);
+    color:var(--on-brand); border:0; border-radius:var(--r-pill);
+    font:600 var(--t-body)/1 inherit; font-family:inherit; cursor:pointer; white-space:nowrap;
+    box-shadow:0 1px 2px rgb(var(--shadow)/.12), 0 8px 22px rgb(var(--shadow)/.14);
+    transition:transform .26s var(--ease), box-shadow .26s var(--ease), opacity .26s var(--ease);
+  }
+  .cta:hover:not([disabled]) { transform:translateY(-1px);
+    box-shadow:0 2px 5px rgb(var(--shadow)/.14), 0 14px 34px rgb(var(--shadow)/.18); }
+  .cta:active:not([disabled]) { transform:scale(.988); }
+  .cta:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; }
+  /* Loading has to look different from disabled, or "sending" and "unavailable"
+     are the same picture. */
+  .cta[disabled] { opacity:.55; cursor:default; transform:none; box-shadow:none; }
+  .cta[aria-busy="true"]::after { content:""; width:14px; height:14px; margin-left:var(--s2);
+    border:2px solid currentColor; border-top-color:transparent; border-radius:50%;
+    animation:spin .7s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .fine { font-size:var(--t-fine); line-height:1.6; color:var(--muted); margin-top:var(--s7); }
+  .fine a { color:var(--muted); }
+
+
   /* ── the plans ───────────────────────────────────────────
      The numbers sit above the form, so the address that follows is given by
      someone who has already seen them. Approval is free; this is what is not.
@@ -227,26 +253,6 @@
   .join input:focus { outline:none; border-color:var(--brand-ink);
                       box-shadow:0 0 0 3px rgb(var(--brand-wash)/.16); }
   .join input[aria-invalid="true"] { border-color:var(--danger); }
-  .cta {
-    display:inline-flex; align-items:center; justify-content:center;
-    min-height:52px; padding:0 var(--s5);
-    background:linear-gradient(135deg,#C93357,#A32154 55%,#75184F);
-    color:var(--on-brand); border:0; border-radius:var(--r-pill);
-    font:600 var(--t-body)/1 inherit; font-family:inherit; cursor:pointer; white-space:nowrap;
-    box-shadow:0 1px 2px rgb(var(--shadow)/.12), 0 8px 22px rgb(var(--shadow)/.14);
-    transition:transform .26s var(--ease), box-shadow .26s var(--ease), opacity .26s var(--ease);
-  }
-  .cta:hover:not([disabled]) { transform:translateY(-1px);
-    box-shadow:0 2px 5px rgb(var(--shadow)/.14), 0 14px 34px rgb(var(--shadow)/.18); }
-  .cta:active:not([disabled]) { transform:scale(.988); }
-  .cta:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; }
-  /* Loading has to look different from disabled, or "sending" and "unavailable"
-     are the same picture. */
-  .cta[disabled] { opacity:.55; cursor:default; transform:none; box-shadow:none; }
-  .cta[aria-busy="true"]::after { content:""; width:14px; height:14px; margin-left:var(--s2);
-    border:2px solid currentColor; border-top-color:transparent; border-radius:50%;
-    animation:spin .7s linear infinite; }
-  @keyframes spin { to { transform:rotate(360deg); } }
 
   .consent { display:flex; gap:var(--s2); align-items:flex-start; max-width:27rem;
              font-size:var(--t-fine); line-height:1.5; color:var(--muted); margin-bottom:var(--s2); }
@@ -260,8 +266,6 @@
   .note[data-state="ok"] { color:var(--brand-ink); font-weight:600; }
   .note a { display:block; margin-top:var(--s2); font-weight:400; color:var(--muted); }
 
-  .fine { font-size:var(--t-fine); line-height:1.6; color:var(--muted); margin-top:var(--s7); }
-  .fine a { color:var(--muted); }
   noscript .nojs { display:block; margin-top:var(--s3); font-size:var(--t-fine); color:var(--danger); }
 
 
@@ -698,7 +702,7 @@
     <p class="legal">No name, no email address, no phone number, no contacts, no location, no photos, no microphone, no advertising identifier, no device fingerprint. Nothing is shared with data brokers, and nothing is used to track you across other companies’ apps or sites.</p>
     <p class="legal">Which lesson you read, how you answered it and what you are finding hard stay on this device. The events below record that a lesson in a given subject was opened; they never carry the lesson, the question or the answer.</p>
     <p class="kicker">The nine events</p>
-    <p class="legal">With usage sharing on, the app sends: a step of onboarding reached; a lesson opened, with its subject; a lesson finished, with how many questions were right and whether the opening puzzle was answered right, with the tempting answer, or otherwise; a recall card rated, with the rating, whether it asked the lesson’s own question or a new everyday scene, and how many times that card has come back; the price screen shown; a purchase started, completed or failed, with which plan; and whether the daily reminder was allowed, with the hour chosen. That list is the whole of it — it is a closed set in the source, not a category.</p>
+    <p class="legal">With usage sharing on, the app sends: a step of onboarding reached; a lesson opened, with its subject; a lesson finished, with how many questions were right, whether the opening puzzle was answered right, with the tempting answer, or otherwise, and whether you shared the puzzle from it (yes or no — never with whom or where); a recall card rated, with the rating, whether it asked the lesson’s own question or a new everyday scene, and how many times that card has come back; the price screen shown; a purchase started, completed or failed, with which plan; and whether the daily reminder was allowed, with the hour chosen. That list is the whole of it — it is a closed set in the source, not a category.</p>
     <p class="legal">They go to PostHog, in their European region, under a random identifier made on this device the first time an event is captured. It is not derived from your device, is not shared with anyone, and is deleted the moment you switch sharing off.</p>
     <p class="legal">The lawful basis is our legitimate interest in knowing whether the product works. The switch in Settings › Data is how you object to it: it stops the sending and discards anything still queued, so nothing waits for you to change your mind.</p>
     <p class="kicker">Who receives the events</p>
@@ -709,6 +713,7 @@
     <p class="legal">Sapiens is run from Ukraine, which has no adequacy decision under the GDPR. The events are read there only by the developer, over encrypted connections.</p>
     <p class="kicker">Reminders</p>
     <p class="legal">If you turn the daily reminder on, iOS schedules it locally and the text is composed on the device. Nothing is sent to us or through a push server. Turning it off in Settings removes the pending reminder.</p>
+    <p class="legal">If you start a free trial and have allowed notifications, the app schedules one local notice before the trial turns into a charge, saying how to cancel. It is composed on the device too, and it is left in place when you erase your data, because the trial carries on with Apple after the app's data is gone.</p>
     <p class="kicker">Purchases</p>
     <p class="legal">Subscriptions and one-off purchases are processed by Apple. Payment details go to Apple and are never seen by this app. The app is told only whether an entitlement is currently active.</p>
     <p class="legal">Apple's own privacy policy governs that transaction.</p>
