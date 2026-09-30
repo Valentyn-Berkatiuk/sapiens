@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://sapiens-app.fly.dev/og.en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Sapiens · one idea a day, from the source">
+<meta property="og:image:alt" content="Sapiens · one idea a day, and why intuition misses it">
 <link rel="alternate" hreflang="de" href="https://sapiens-app.fly.dev/app/terms?lang=de">
 <link rel="alternate" hreflang="fr" href="https://sapiens-app.fly.dev/app/terms?lang=fr">
 <link rel="alternate" hreflang="es" href="https://sapiens-app.fly.dev/app/terms?lang=es">
@@ -118,13 +118,20 @@
   cite { display:block; margin-top:var(--s2); font:400 var(--t-fine)/1.4 -apple-system,sans-serif;
          font-style:normal; color:var(--muted); }
 
-  /* ── quiz: answerable, so the page shows the mechanic instead of describing it ── */
+  /* ── puzzle and scene: answerable, so the page shows the mechanic instead of describing it ──
+     The puzzle comes first and is never judged: the pick is held, the others recede, and
+     one line sends the reader on to the reveal. The scene after the idea is the graded one. */
+  .puzzle { margin:0 0 var(--s5); padding-bottom:var(--s5); border-bottom:1px solid var(--hair); }
   .quiz { margin-top:var(--s5); padding-top:var(--s5); border-top:1px solid var(--hair); }
-  .quiz .ask { font-family:-apple-system,BlinkMacSystemFont,sans-serif !important;
+  .quiz .ask, .puzzle .ask { font-family:-apple-system,BlinkMacSystemFont,sans-serif !important;
                font-size:var(--t-body) !important; font-weight:600; margin-bottom:var(--s3) !important; }
-  .quiz ol { list-style:none; margin:0; padding:0; counter-reset:o; display:flex;
+  .quiz ol, .puzzle ol { list-style:none; margin:0; padding:0; counter-reset:o; display:flex;
              flex-direction:column; gap:var(--s2); }
-  .quiz li { counter-increment:o; }
+  .quiz li, .puzzle li { counter-increment:o; }
+  .card p.label { font:700 var(--t-fine)/1.4 -apple-system,sans-serif; letter-spacing:.12em;
+                  text-transform:uppercase; color:var(--muted); margin:0 0 var(--s2); }
+  .card p.hook { color:var(--subject); }
+  .card p.idea-k { color:var(--subject); margin-top:var(--s5); }
   .opt { display:flex; gap:var(--s3); align-items:baseline; width:100%; text-align:left;
          font:inherit; font-size:var(--t-body); color:var(--ink2); cursor:pointer;
          background:var(--surface); border:1px solid var(--edge); border-radius:var(--r-s);
@@ -141,6 +148,9 @@
   .opt[data-state="right"]::before { color:var(--subject); }
   .opt[data-state="wrong"] { border-color:var(--danger); color:var(--muted); }
   .opt[data-state="wrong"]::before { color:var(--danger); }
+  .opt[data-state="picked"] { border-color:var(--brand-ink); box-shadow:inset 0 0 0 1px var(--brand-ink);
+                              color:var(--ink); }
+  .opt[data-state="muted"] { opacity:.55; }
   .after { font-size:var(--t-fine) !important; line-height:1.5; color:var(--muted);
            margin:var(--s3) 0 0 !important; font-weight:400 !important;
            font-family:-apple-system,sans-serif !important; }
@@ -149,7 +159,10 @@
            background:var(--surface2); font-size:var(--t-fine); color:var(--ink2);
            display:flex; gap:var(--s2); align-items:baseline; }
   .again b { color:var(--subject); font-weight:600; }
-  .again[hidden] { display:none !important; }
+  .again[hidden], .reply[hidden] { display:none !important; }
+  .reply { margin:var(--s3) 0 0; padding:var(--s3) var(--s4); border-radius:var(--r-s);
+           background:var(--surface2); font-size:var(--t-fine); color:var(--ink2);
+           display:flex; gap:var(--s3); align-items:baseline; }
 
   .sources { margin-top:var(--s5); padding:var(--s4); background:var(--surface2); border-radius:var(--r-m); }
   .sources .kicker { color:var(--muted); margin-bottom:var(--s2); }
@@ -158,30 +171,53 @@
   .sources a { color:var(--brand-ink); text-underline-offset:2px; }
   .sources a:focus-visible { outline:2px solid var(--brand-ink); outline-offset:2px; border-radius:var(--s1); }
 
-  /* ── the price ───────────────────────────────────────────
-     The number sits above the form, so the address that follows is given by
-     someone who has already seen it. Approval is free; this is what is not. */
-  .price { margin:0 0 var(--s5); padding:var(--s5); max-width:27rem;
-           background:var(--surface); border:1px solid var(--hair); border-radius:var(--r-l);
-           box-shadow:0 1px 2px rgb(var(--shadow)/.07), 0 10px 26px rgb(var(--shadow)/.08); }
-  .price-lead { margin:0; font-size:var(--t-fine); color:var(--muted); }
-  .price-amount { margin:var(--s2) 0 var(--s1); display:flex; align-items:baseline;
-                  gap:var(--s2); flex-wrap:wrap; }
-  .price-amount b { font:700 clamp(2rem,6vw,2.5rem)/1 -apple-system,BlinkMacSystemFont,sans-serif;
-                    letter-spacing:-.03em; font-variant-numeric:tabular-nums; }
-  .price-amount span { font-size:var(--t-body); color:var(--muted); }
-  /* The yearly figure against twelve monthly ones is a saving of about 61%, and it is the
-     same in both arms because both arms carry the same price. The only thing
-     that differs between buckets is the magnitude. */
-  .price-monthly { margin:0 0 var(--s3); font-size:var(--t-fine); color:var(--muted); }
-  .price-note { margin:0; font-size:var(--t-fine); line-height:1.5; color:var(--ink2); }
+  /* ── the plans ───────────────────────────────────────────
+     The numbers sit above the form, so the address that follows is given by
+     someone who has already seen them. Approval is free; this is what is not.
+     Three radio buttons dressed as cards: a tap is the answer to "which plan",
+     it needs no script to register, and the keyboard gets arrow keys for free.
+     Side by side where three fit, stacked on a phone. */
+  .price { margin:0 0 var(--s5); }
+  .price-lead { margin:0 0 var(--s3); font-size:var(--t-fine); color:var(--muted); }
+  /* The yearly card is given the extra width its early-bird line needs, so it wraps into
+     fewer lines and the other two are not left standing half empty beside it. */
+  .plans { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1.45fr); gap:var(--s3);
+           margin:0 0 var(--s4); padding:0; border:0; min-width:0; }
+  .plan { position:relative; display:flex; cursor:pointer; }
+  .plan input { position:absolute; opacity:0; width:1px; height:1px; margin:0; }
+  .plan-card { flex:1; display:flex; flex-direction:column; gap:var(--s1); padding:var(--s4);
+               background:var(--surface); border:1px solid var(--hair); border-radius:var(--r-l);
+               box-shadow:0 1px 2px rgb(var(--shadow)/.07), 0 10px 26px rgb(var(--shadow)/.08);
+               transition:border-color .26s var(--ease), box-shadow .26s var(--ease); }
+  .plan:hover .plan-card { border-color:var(--edge); }
+  .plan input:focus-visible + .plan-card { outline:2px solid var(--brand-ink); outline-offset:2px; }
+  .plan input:checked + .plan-card { border-color:var(--brand-ink);
+    box-shadow:inset 0 0 0 1px var(--brand-ink), 0 10px 26px rgb(var(--shadow)/.10); }
+  /* The early bird is the one plan with something to say, so it carries the brand wash. */
+  .plan-year .plan-card { background:linear-gradient(180deg,rgb(var(--brand-wash)/.07),var(--surface) 60%); }
+  .plan-name { font-size:var(--t-fine); font-weight:600; color:var(--ink2);
+               display:flex; flex-wrap:wrap; gap:var(--s2); align-items:center; }
+  .plan-badge { padding:2px var(--s2); border-radius:var(--r-pill); background:rgb(var(--brand-wash)/.14);
+                color:var(--brand-ink); font-size:12px; font-weight:600; }
+  .plan-amount { display:flex; align-items:baseline; gap:var(--s2); flex-wrap:wrap; margin-top:var(--s1); }
+  .plan-amount b { font:700 clamp(1.5rem,4.4vw,1.9rem)/1 -apple-system,BlinkMacSystemFont,sans-serif;
+                   letter-spacing:-.03em; font-variant-numeric:tabular-nums; }
+  .plan-per { font-size:var(--t-fine); color:var(--muted); }
+  /* Top-aligned: the yearly card is taller for its early-bird line, and pushing this line
+     to the bottom of the other two left a hole in the middle of each. */
+  .plan-each { font-size:var(--t-fine); color:var(--ink2); padding-top:var(--s2); }
+  .plan-early { font-size:var(--t-fine); line-height:1.45; color:var(--brand-ink); font-weight:500; }
+  .price-note { margin:0; max-width:34rem; font-size:var(--t-fine); line-height:1.5; color:var(--ink2); }
+  @media (max-width:34rem) {
+    .plans { grid-template-columns:minmax(0,1fr); }
+  }
 
   /* ── the ask, once, after the lesson has been given ─────── */
   .ask-block { margin-top:var(--s7); }
   .ask-block h3 { font:600 var(--t-lead)/1.3 -apple-system,sans-serif; margin:0 0 var(--s2);
                   letter-spacing:-.015em; text-wrap:balance; }
   .ask-block .why { color:var(--ink2); margin:0 0 var(--s5); max-width:30rem; }
-  .join { display:flex; gap:var(--s2); margin:0 0 var(--s3); max-width:27rem; }
+  .join { display:flex; gap:var(--s2); margin:0 0 var(--s3); max-width:34rem; }
   .join input {
     flex:1; min-width:0; font:inherit; color:var(--ink); background:var(--surface);
     border:1px solid var(--edge); border-radius:var(--r-pill); padding:0 var(--s4); min-height:52px;
@@ -231,12 +267,13 @@
 
   /* ── hero ───────────────────────────────────────────────── */
   .hero { position:relative; display:grid; grid-template-columns:minmax(0,1fr) 300px;
-          grid-template-rows:auto auto; gap:var(--s5) var(--s7); align-items:start;
+          grid-template-rows:auto auto 1fr; gap:var(--s5) var(--s7); align-items:start;
           padding:var(--s6) 0; }
   .hero > input { position:absolute; width:1px; height:1px; opacity:0; margin:0; }
   .hero-copy { grid-column:1; grid-row:1; padding-top:var(--s5); }
-  .hero-steps { grid-column:1; grid-row:2; align-self:end; }
-  .demo { grid-column:2; grid-row:1 / span 2; }
+  .pains { grid-column:1; grid-row:2; }
+  .hero-steps { grid-column:1; grid-row:3; align-self:end; }
+  .demo { grid-column:2; grid-row:1 / span 3; }
   .eyebrow { display:inline-flex; align-items:center; gap:var(--s2); margin:0 0 var(--s4);
              padding:5px var(--s3) 5px var(--s2); border-radius:var(--r-pill);
              background:rgb(var(--brand-wash)/.12); color:var(--brand-ink);
@@ -247,16 +284,22 @@
      rose. Size is what separates a page action from a picture of one, so the
      page's single call is set half again as tall as anything inside the frame. */
   .hero-act .cta { min-height:56px; padding:0 var(--s6); font-size:18px; }
-  .hero-alt { font-size:var(--t-body); color:var(--ink2); text-underline-offset:3px; }
+  .hero-alt { flex-basis:100%; font-size:var(--t-fine); color:var(--muted); text-underline-offset:3px; }
   .hero-alt:focus-visible { outline:2px solid var(--brand-ink); outline-offset:3px; border-radius:var(--s1); }
   .hero-note { font-size:var(--t-fine); line-height:1.5; color:var(--muted); margin:0; max-width:17rem; }
   a.cta { text-decoration:none; }
+  /* The pains: three sentences in the reader's words. A list and a rule, nothing more —
+     icons or cards would turn them into a feature grid. */
+  .pains { list-style:none; margin:0; padding:0 0 0 var(--s4); max-width:30rem;
+           border-left:2px solid var(--hair); display:grid; gap:var(--s3); }
+  .pains li { font-size:var(--t-body); line-height:1.5; color:var(--ink2); }
   .lesson-intro { font-size:var(--t-fine); color:var(--muted); margin:0 0 var(--s3); }
 
   /* ── the demo ───────────────────────────────────────────────────────────
      Four screens of the app, switched by radio buttons rather than script, so
      the whole tour works with JavaScript off. The only thing JS adds inside
-     the phone is holding the quiz answer back until it is tapped. */
+     the phone is holding the puzzle's reply and "See why" back until an answer
+     is picked. */
   .demo { justify-self:center; }
   .stage { display:flex; flex-direction:column; align-items:center; gap:var(--s3); }
   .phone { width:300px; flex:none; padding:9px; border-radius:46px;
@@ -326,23 +369,14 @@
            position:relative; opacity:.75; }
   .sic b::after { content:""; position:absolute; inset:1.5px; right:5px; background:currentColor; border-radius:1px; }
 
-  /* SubjectCover: gradient, faint rings off to the right, scattered dots, bottom scrim. */
+  /* SubjectCover: gradient, then the orbit art from orbitArt() below, then the bottom scrim. */
   .acover { position:relative; overflow:hidden; --c1:#57A183; --c2:#2A6952; --c3:#1A3B30;
             background:linear-gradient(135deg,var(--c1),var(--c2) 45%,var(--c3)); }
   .acover.psy { --c1:#C2568C; --c2:#7A2E5C; --c3:#4A1C3C; }
-  .acover::before { content:""; position:absolute; right:-52%; top:-118%; width:150%; aspect-ratio:1;
-    border-radius:50%; border:1px solid rgb(255 255 255/.1);
-    box-shadow:0 0 0 13px rgb(255 255 255/.055), 0 0 0 29px rgb(255 255 255/.045),
-               0 0 0 47px rgb(255 255 255/.035), 0 0 0 67px rgb(255 255 255/.03); }
-  .acover::after { content:""; position:absolute; inset:0; background:
-    radial-gradient(1.6px 1.6px at 14% 68%, rgb(255 255 255/.55), transparent),
-    radial-gradient(1.3px 1.3px at 31% 24%, rgb(255 255 255/.42), transparent),
-    radial-gradient(2px 2px at 52% 77%, rgb(255 255 255/.36), transparent),
-    radial-gradient(1.4px 1.4px at 68% 41%, rgb(255 255 255/.5), transparent),
-    radial-gradient(1.7px 1.7px at 83% 84%, rgb(255 255 255/.33), transparent),
-    radial-gradient(1.2px 1.2px at 91% 19%, rgb(255 255 255/.45), transparent),
-    linear-gradient(to bottom, transparent 42%, rgb(8 4 12/.34) 74%, rgb(8 4 12/.74)); }
+  .acover::after { content:""; position:absolute; inset:0;
+    background:linear-gradient(transparent, rgb(8 4 12/.34), rgb(8 4 12/.74)); }
   .acover > * { position:relative; z-index:1; }
+  .acover > .orb { position:absolute; inset:0; z-index:auto; width:100%; height:100%; }
 
   .apill { display:inline-block; font-size:9px; font-weight:600; letter-spacing:.01em;
            padding:4px 9px; border-radius:20px; background:rgb(255 255 255/.94); color:#1C161F; }
@@ -361,6 +395,21 @@
           box-shadow:0 1px 2px rgb(120 20 50/.2), 0 6px 14px rgb(120 20 50/.24);
           transition:transform .26s var(--ease); }
   .abtn:active { transform:scale(.988); }
+  /* The phone is a demo nobody was told how to drive, so the one control that moves it on
+     calls for a tap: the button nudges up and a ring swells out of it and fades, every
+     1.6s. It stops once the pointer is on it — the reader has found it. Without motion the
+     ring holds still, which still says "this one". */
+  .abtn { --tap:rgb(255 123 159/.8); }
+  @keyframes tap {
+    0%   { transform:scale(1);    box-shadow:0 0 0 0 var(--tap), 0 6px 14px rgb(120 20 50/.24); }
+    18%  { transform:scale(1.04); }
+    36%  { transform:scale(1); }
+    75%  { box-shadow:0 0 0 12px rgb(255 123 159/0), 0 6px 14px rgb(120 20 50/.24); }
+    100% { transform:scale(1);    box-shadow:0 0 0 0 rgb(255 123 159/0), 0 6px 14px rgb(120 20 50/.24); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .abtn { box-shadow:0 0 0 3px rgb(255 123 159/.55), 0 6px 14px rgb(120 20 50/.24); }
+  }
   .disc { display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px;
           border-radius:50%; background:rgb(255 255 255/.2); font-size:10px; }
   .aghost { min-height:33px; border:1px solid var(--hair); background:var(--surface);
@@ -398,7 +447,7 @@
   .twk-s { font-size:9px; color:var(--muted); margin:1px 0 0; }
   .chev { margin-left:auto; color:var(--muted); font-size:13px; }
 
-  /* Screen 2 — the reader */
+  /* The reader: the cover the lesson wears as a header (screen 3) */
   .rhero { position:relative; flex:none; height:178px; display:flex; flex-direction:column;
            justify-content:flex-end; padding:14px 16px; }
   .rclose { position:absolute; top:34px; left:16px; z-index:2; width:24px; height:24px; border-radius:50%;
@@ -427,7 +476,7 @@
   .asrc-s { font-size:8.5px; color:var(--muted); margin:1px 0 0; }
   .rbody .abtn { margin-top:auto; }
 
-  /* Screen 3 — the question */
+  /* Option rows and the verdict, shared by the puzzle (screen 2) and the scene (screen 4) */
   .aq { padding:8px 16px 14px; display:flex; flex-direction:column; gap:9px; }
   .aq-cover { height:62px; display:flex; align-items:flex-end; padding:9px; }
   .aq-q { margin:0; padding:11px; font:600 15px/1.28 "Iowan Old Style","Palatino Linotype",Georgia,serif; }
@@ -464,27 +513,39 @@
                 background:var(--surface); border:1px solid var(--hair); color:var(--ink2); }
   .aq .abtn { margin-top:auto; }
 
-  /* Screen 4 — done for today */
-  .done { padding:12px 16px 16px; display:flex; flex-direction:column; align-items:center; gap:11px; }
-  .done .thead { width:100%; }
-  .ringwrap { position:relative; width:138px; height:138px; margin-top:4px; }
-  .ringwrap svg { width:100%; height:100%; display:block; }
-  .ring-trk { fill:none; stroke:var(--hair); stroke-width:11; }
-  .ring-arc { fill:none; stroke:url(#rg); stroke-width:11; stroke-linecap:round;
-              stroke-dasharray:314; stroke-dashoffset:0; transform:rotate(-90deg); transform-origin:50% 50%; }
-  .ring-in { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
-             justify-content:center; gap:3px; }
-  .ring-in .tick { font-size:30px; line-height:1; font-weight:500; }
-  .ring-in .sum { font-size:8px; font-weight:600; letter-spacing:.09em; text-transform:uppercase;
-                  color:var(--muted); max-width:74px; text-align:center; line-height:1.35; }
-  .done-line { margin:0; text-align:center; font-size:11.5px; line-height:1.45; color:var(--ink2);
-               padding:0 8px; }
-  .free { width:100%; display:flex; align-items:center; gap:9px; padding:9px 10px; border-radius:10px;
-          background:var(--surface); border:1px solid var(--hair); }
-  .done-fine { margin:auto 0 0; text-align:center; font-size:9.5px; color:var(--muted); }
+  /* Screen 2 — the puzzle. No cover: the question is meant to be answered cold, and the
+     app draws no verdict on it — the pick gains a ring, the others recede. */
+  .pz { padding:6px 16px 14px; gap:10px; }
+  .pztop { display:flex; align-items:center; gap:10px; }
+  .pztop .prog { flex:1; }
+  .pzx { flex:none; width:24px; height:24px; border-radius:50%; display:flex; align-items:center;
+         justify-content:center; font-size:11px; font-weight:600; background:var(--surface2);
+         border:1px solid var(--hair); color:var(--ink2); }
+  .pzq { padding:11px 12px 12px; }
+  .pzk { margin:0 0 5px; font-size:8px; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+         color:var(--muted); }
+  .pzq .aq-q { padding:0; font-size:13.5px; line-height:1.36; }
+  .pz ol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .aopt[data-state="picked"] { border-color:var(--brand-ink); box-shadow:inset 0 0 0 1px var(--brand-ink); }
+  .aopt[data-state="picked"] .mk { background:rgb(var(--brand-wash)/.14); color:var(--brand-ink); }
+  .pz-reply { display:flex; gap:9px; align-items:flex-start; padding:10px 11px; border-radius:11px;
+              background:var(--surface2); font-size:10.5px; line-height:1.45; color:var(--ink2); }
+  .pz .abtn { margin-top:auto; flex:none; }
+  .abtn.wait { opacity:.42; cursor:default; animation:none !important; box-shadow:none; }
+  .scr [hidden] { display:none !important; }
 
+  /* Screen 3 — the reveal and the idea. A shorter cover than the old reader: the text is
+     the point of this page. */
+  .rhero.short { height:124px; }
+  .rbody.rv { gap:9px; padding-top:11px; }
+  .rv .rtext { font-size:11.5px; line-height:1.5; }
 
-  @keyframes close { from { stroke-dashoffset:314; } to { stroke-dashoffset:0; } }
+  /* Screen 4 — the idea in a new scene, answered. */
+  .ap-cover { height:40px; display:flex; align-items:center; padding:0 10px; }
+  .ap .aq-q { font-size:12.5px; line-height:1.36; padding:10px 11px 11px; }
+  .ap .aopt { font-size:10.5px; padding:8px 10px; }
+  .ap .aexp p { font-size:9.8px; }
+
   @keyframes reveal { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
   @keyframes hit {
     0%   { opacity:0; transform:scale(.15); animation-timing-function:cubic-bezier(.34,1.28,.64,1); }
@@ -497,10 +558,13 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    .abtn { animation:tap 1.6s cubic-bezier(.2,.6,.3,1) .6s infinite; }
+    .abtn:hover, .abtn:focus-visible { animation:none; }
     /* The app lifts each block 12pt behind the one above it, 55ms apart
        (Style.swift, .arrive(step:when:)). The hero arrives the same way. */
-    .hero-copy, .hero-steps, .demo, .card { animation:rise .8s var(--ease) both; }
-    .hero-steps { animation-delay:.055s; }
+    .hero-copy, .pains, .hero-steps, .demo, .card { animation:rise .8s var(--ease) both; }
+    .pains      { animation-delay:.055s; }
+    .hero-steps { animation-delay:.11s; }
     .demo       { animation-delay:.11s; }
     .card       { animation-delay:.165s; }
 
@@ -541,17 +605,20 @@
 
     /* The verdict is the moment the product is judged on, so it lands rather
        than appears — the same call the app makes with Motion.reveal. */
-    .again, .aexp { animation:reveal .38s var(--ease-land) both; }
+    .again, .aexp, .reply, .pz-reply { animation:reveal .38s var(--ease-land) both; }
     /* Two rounds of hits inside one 7s pass, then it stops on the full diagram.
        The gap between rounds is longer than the stagger, so there is a moment
        when the bomber is genuinely clean again before it starts taking fire —
        and nothing ever lands on the engines or the cockpit, which is the lesson.
        The backwards fill holds the empty first frame through the delay; after it
        the circles fall back to their own styles, which are simply visible. */
+    /* SubjectCover's periods, one per ring. Outside this query the dots hold their
+       start positions: reduced motion takes the movement away, not the picture. */
+    .orb .spin { animation:spin 42s linear infinite; }
+    .orb .r1 { animation-duration:64s; } .orb .r2 { animation-duration:86s; }
+    .orb .r3 { animation-duration:108s; }
     .cover .hit { animation:hit 7s cubic-bezier(.32,.72,0,1) backwards;
                   animation-delay:var(--d,0s); }
-    #st4:checked ~ .demo .stage .ring-arc { animation:close .8s var(--ease) both; }
-    #st4:checked ~ .demo .stage .ring-in { animation:reveal .5s var(--ease) .22s both; }
 
     html { scroll-behavior:smooth; }
   }
@@ -560,10 +627,11 @@
 
   @media (max-width:54rem) {
     .hero { grid-template-columns:minmax(0,1fr); grid-template-rows:auto; gap:var(--s6); }
-    .hero-copy, .hero-steps, .demo { grid-column:1; grid-row:auto; }
+    .hero-copy, .pains, .hero-steps, .demo { grid-column:1; grid-row:auto; }
     .hero-copy { order:1; padding-top:0; }
-    .demo { order:2; justify-self:center; }
-    .hero-steps { order:3; align-self:auto; }
+    .pains { order:2; }
+    .demo { order:3; justify-self:center; }
+    .hero-steps { order:4; align-self:auto; }
   }
   /* Below 336px the phone no longer fits the gutter, so the whole rig scales. */
   @media (max-width:21rem) {
